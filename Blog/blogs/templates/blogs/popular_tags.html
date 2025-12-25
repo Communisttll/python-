@@ -1,0 +1,3 @@
+{% for tag in tags %}
+    <a href="{% url 'blogs:posts_by_tag' tag.slug %}" class="badge bg-primary text-decoration-none me-1 mb-1">{{ tag.name }} ({{ tag.post_count }})</a>
+{% endfor %}

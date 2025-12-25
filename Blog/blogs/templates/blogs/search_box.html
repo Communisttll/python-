@@ -1,0 +1,12 @@
+<!-- 搜索框 -->
+<div class="search-container mb-4">
+    <form method="get" action="{% url 'blogs:search_posts' %}" class="d-flex gap-2">
+        <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" name="q" class="form-control" placeholder="搜索文章标题或内容..." value="{{ query|default:'' }}">
+        </div>
+        <button type="submit" class="btn btn-primary">
+            <i class="bi bi-search"></i> 搜索
+        </button>
+    </form>
+</div>

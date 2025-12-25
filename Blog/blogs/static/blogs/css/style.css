@@ -1,0 +1,335 @@
+/* 自定义样式 */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -webkit-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -moz-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -o-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+}
+
+/* 导航栏样式 */
+.navbar {
+    background: rgba(255, 255, 255, 0.95) !important;
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 9999;
+}
+
+/* 提升下拉菜单层级，避免被内容卡片遮挡 */
+.navbar .dropdown-menu {
+    z-index: 10000;
+    position: absolute;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -webkit-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -moz-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -o-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* 卡片样式 */
+.card {
+    border: none;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.95);
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95));
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95));
+    background: -o-linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    z-index: 1;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2) !important;
+}
+
+.card-title a {
+    color: #2c3e50;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.card-title a:hover {
+    color: #667eea;
+    text-decoration: none;
+}
+
+.card-text {
+    color: #6c757d;
+    line-height: 1.6;
+}
+
+/* 按钮样式 */
+.btn {
+    border-radius: 25px;
+    padding: 10px 25px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    border: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn:hover:before {
+    left: 100%;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    -webkit-transform: translateY(-3px);
+    -moz-transform: translateY(-3px);
+    -o-transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    -webkit-box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+    -moz-box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline-primary {
+    border: 2px solid #667eea;
+    color: #667eea;
+}
+
+.btn-outline-primary:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-color: transparent;
+}
+
+/* 表单样式 */
+.form-control, .form-select {
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
+    padding: 12px 20px;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.9);
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+    background: -o-linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9));
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    -webkit-box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    background: white;
+}
+
+/* 标题样式 */
+.display-4 {
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: -webkit-linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: -moz-linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    background: -o-linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+/* 玻璃拟态效果 */
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    background: -webkit-linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25));
+    background: -moz-linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25));
+    background: -o-linear-gradient(rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.25));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 1;
+}
+
+/* 页脚样式 */
+footer {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+/* 布局 */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* 宽按钮样式 - 防止文字换行 */
+.btn-wide {
+    min-width: 120px;
+    white-space: nowrap;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .card {
+        margin-bottom: 1.5rem;
+    }
+    
+    .btn {
+        padding: 8px 20px;
+        font-size: 0.9rem;
+    }
+    
+    .btn-wide {
+        min-width: 100px;
+        padding: 6px 15px;
+        font-size: 0.85rem;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* 卡片动画 */
+.card {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+
+/* 特殊效果 */
+.text-gradient {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -webkit-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -moz-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: -o-linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.animated-icon {
+    animation: float 3s ease-in-out infinite;
+}
+
+.pulse-on-hover:hover {
+    animation: pulse 0.6s ease-in-out;
+}
+
+/* 加载动画 */
+.loading {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* 标签样式 */
+.badge {
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-weight: 500;
+}
+
+/* 头像样式 */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* 评论样式 */
+.comment {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.comment:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateX(5px);
+}

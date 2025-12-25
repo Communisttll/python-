@@ -1,0 +1,209 @@
+{% extends 'blogs/base.html' %}
+
+{% block title %}{{ post.title }} - 我的博客{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <article class="card shadow-lg">
+            <div class="card-body p-5">
+                <header class="mb-4">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="{% url 'blogs:index' %}" class="text-decoration-none">
+                                <i class="bi bi-house-door"></i> 首页
+                            </a></li>
+                            <li class="breadcrumb-item active">{{ post.title|truncatechars:30 }}</li>
+                        </ol>
+                    </nav>
+                    
+                    <h1 class="display-5 mb-3 text-gradient">{{ post.title }}</h1>
+                    <div class="d-flex align-items-center mb-3">
+                        <div class="avatar me-3">
+                            {{ post.author.username|first|upper }}
+                        </div>
+                        <div>
+                            <div class="fw-bold">{{ post.author.username }}</div>
+                            <div class="text-muted">
+                                <i class="bi bi-clock"></i> {{ post.created_at|date:"Y年m月d日 H:i" }}
+                                {% if post.updated_at != post.created_at %}
+                                <small class="ms-2">
+                                    <i class="bi bi-pencil"></i> 编辑于 {{ post.updated_at|date:"Y-m-d H:i" }}
+                                </small>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </header>
+                
+                <div class="post-content mb-5">
+                    <div class="content-wrapper">
+                        {{ post.content|linebreaks }}
+                    </div>
+                </div>
+                
+                <!-- 标签区域 -->
+                <div class="mb-4">
+                    {% if post.tags.all %}
+                        {% for tag in post.tags.all %}
+                            <a href="{% url 'blogs:posts_by_tag' tag.slug %}" class="badge bg-primary text-decoration-none me-2">
+                                <i class="bi bi-tag"></i> {{ tag.name }}
+                            </a>
+                        {% endfor %}
+                    {% else %}
+                        <span class="text-muted">暂无标签</span>
+                    {% endif %}
+                </div>
+                
+                <!-- 操作按钮 -->
+                <footer class="d-flex justify-content-between align-items-center pt-4 border-top">
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'blogs:index' %}" class="btn btn-outline-secondary pulse-on-hover btn-wide">
+                            <i class="bi bi-arrow-left"></i> 返回首页
+                        </a>
+                        <button class="btn btn-outline-primary pulse-on-hover btn-wide" onclick="copyLink()">
+                            <i class="bi bi-share"></i> 分享
+                        </button>
+                        <button class="btn btn-outline-info pulse-on-hover btn-wide" onclick="window.print()">
+                            <i class="bi bi-printer"></i> 打印
+                        </button>
+                    </div>
+                    
+                    {% if user.is_authenticated and user == post.author %}
+                    <div class="d-flex gap-2">
+                        <a href="{% url 'blogs:edit_post' post.pk %}" class="btn btn-primary pulse-on-hover btn-wide">
+                            <i class="bi bi-pencil-square"></i> 编辑文章
+                        </a>
+                        <button class="btn btn-danger pulse-on-hover btn-wide" onclick="confirmDelete()">
+                            <i class="bi bi-trash"></i> 删除
+                        </button>
+                        <a href="{% url 'blogs:user_profile' username=post.author.username %}" class="btn btn-outline-info pulse-on-hover btn-wide">
+                            <i class="bi bi-person"></i> 查看作者资料
+                        </a>
+                    </div>
+                    {% endif %}
+                </footer>
+            </div>
+        </article>
+        
+        <!-- 评论区 -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-chat-dots"></i> 评论区
+                </h5>
+                
+                {% if user.is_authenticated %}
+                    <form method="post" class="mb-4">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ comment_form.content }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-send"></i> 发表评论
+                        </button>
+                    </form>
+                {% else %}
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle"></i> 请 <a href="{% url 'blogs:login' %}?next={{ request.path }}">登录</a> 后发表评论
+                    </div>
+                {% endif %}
+                
+                <div class="comments-list">
+                    {% for comment in comments %}
+                        <div class="comment mb-3 p-3 border rounded">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <strong>{{ comment.author.username }}</strong>
+                                <small class="text-muted">
+                                    <i class="bi bi-clock"></i> {{ comment.created_at|date:"Y-m-d H:i" }}
+                                </small>
+                            </div>
+                            <div class="comment-content">
+                                {{ comment.content|linebreaks }}
+                            </div>
+                        </div>
+                    {% empty %}
+                        <p class="text-muted">暂无评论，快来发表第一条评论吧！</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- 相关文章 -->
+        <div class="card mt-4">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <i class="bi bi-journal-text"></i> 相关文章
+                </h5>
+                <p class="text-muted">相关文章推荐功能正在开发中...</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 删除确认模态框 -->
+<div class="modal fade" id="deleteModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">确认删除</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p>您确定要删除这篇文章吗？此操作无法撤销。</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                <form method="post" action="{% url 'blogs:delete_post' post.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger">删除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function copyLink() {
+    navigator.clipboard.writeText(window.location.href).then(function() {
+        // 创建临时提示
+        const toast = document.createElement('div');
+        toast.className = 'position-fixed top-0 end-0 p-3';
+        toast.style.zIndex = '9999';
+        toast.innerHTML = `
+            <div class="toast show" role="alert">
+                <div class="toast-header">
+                    <strong class="me-auto">提示</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+                </div>
+                <div class="toast-body">
+                    <i class="bi bi-check-circle text-success"></i> 链接已复制到剪贴板！
+                </div>
+            </div>
+        `;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    });
+}
+
+function confirmDelete() {
+    const modal = new bootstrap.Modal(document.getElementById('deleteModal'));
+    modal.show();
+}
+
+// 代码高亮（如果内容中有代码块）
+document.addEventListener('DOMContentLoaded', function() {
+    // 为代码块添加样式
+    document.querySelectorAll('pre').forEach(block => {
+        block.classList.add('bg-light', 'p-3', 'rounded', 'border');
+    });
+    
+    // 为内联代码添加样式
+    document.querySelectorAll('code').forEach(code => {
+        if (!code.parentElement.tagName === 'PRE') {
+            code.classList.add('bg-light', 'px-2', 'py-1', 'rounded', 'border');
+        }
+    });
+});
+</script>
+{% endblock %}
