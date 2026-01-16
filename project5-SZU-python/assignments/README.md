@@ -54,7 +54,7 @@ image_retrieval_system/
 ├── assignments/                    # 核心算法模块及预训练模型
 │   ├── dinov2_numpy.py            # DINOv2模型在NumPy上的实现
 │   ├── preprocess_image.py        # 图像预处理工具函数
-│   ├── photo/                     # 图库图片存储目录（130张测试图片）
+│   ├── photo/                     # 图库图片存储目录（无测试图片）
 │   └── vit-dinov2-base.npz      # DINOv2基础模型的预训练权重文件
 ├── image_retrieval_system/         # Django项目主配置目录
 │   ├── settings.py                # Django项目设置
@@ -64,7 +64,7 @@ image_retrieval_system/
 │   ├── image_retrieval.py         # 图像检索核心逻辑，包括特征提取和相似度计算
 │   ├── build_gallery.py           # 用于构建本地图库特征（.npy）和路径（.json）的脚本
 │   ├── data/                      # 存储图库特征数据（重要）
-│   │   ├── gallery_features.npy   # 实际使用的图库特征向量文件（130张图片×768维）
+│   │   ├── gallery_features.npy   # 实际使用的图库特征向量文件
 │   │   └── image_paths.json       # 图库图片路径映射文件
 │   ├── templates/retrieval/        # 存放Django模板文件（HTML）
 │   │   ├── index.html             # 系统首页
@@ -78,8 +78,6 @@ image_retrieval_system/
 │   ├── gallery/                   # 同步后的图库图片（Web访问用）
 │   └── uploads/                   # 用户临时上传图片
 ├── manage.py                       # Django项目管理脚本
-├── gallery_features.npy            # ⚠️ 冗余文件：未被使用的特征文件（建议删除）
-├── image_paths.json                # ⚠️ 冗余文件：未被使用的路径文件（建议删除）
 ├── db.sqlite3                      # Django默认的SQLite数据库文件
 └── README.md                       # 项目说明文件
 ```
@@ -88,7 +86,6 @@ image_retrieval_system/
 - **`retrieval/data/gallery_features.npy`**: 实际使用的图库特征文件，包含130张图片的768维特征向量
 - **`retrieval/data/image_paths.json`**: 图库图片路径映射文件，对应特征向量的图片路径
 - **`assignments/vit-dinov2-base.npz`**: DINOv2预训练权重文件，约330MB
-- **根目录下的 `gallery_features.npy`**: 冗余文件，未被系统使用，建议删除
 
 ## 快速开始
 
