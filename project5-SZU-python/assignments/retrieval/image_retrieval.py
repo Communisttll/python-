@@ -28,9 +28,6 @@ class ImageRetrievalSystem:
         self.gallery_dir = gallery_dir
         self.gallery_features = None
         self.image_paths = []
-        
-        if gallery_dir and os.path.exists(gallery_dir):
-            self.load_gallery_features()
     
     def extract_feature(self, image_path: str) -> np.ndarray:
         """从图像文件提取特征向量"""
