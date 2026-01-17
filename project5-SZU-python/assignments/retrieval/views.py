@@ -57,12 +57,8 @@ def upload(request):
             
             # 初始化检索系统
             weights_path = r'D:\BaiduNetdiskDownload\project5-SZU-python\assignments\vit-dinov2-base.npz'
-            gallery_dir = r'D:\BaiduNetdiskDownload\project5-SZU-python\assignments\photo'
             
-            retrieval_system = ImageRetrievalSystem(
-                weights_path=weights_path,
-                gallery_dir=gallery_dir
-            )
+            retrieval_system = ImageRetrievalSystem(weights_path=weights_path)
             
             # 明确指定加载正确的图库特征文件
             retrieval_system.load_gallery_features(
