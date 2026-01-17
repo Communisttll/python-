@@ -11,16 +11,18 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from retrieval.image_retrieval import ImageRetrievalSystem
 from assignments.preprocess_image import resize_short_side
 
-def build_gallery_features(photo_dir=r"assignments\photo", output_dir=r"retrieval\data"):
-    """构建图库特征"""
+def build_gallery_features(photo_dir=r"assignments\photo", output_dir=r"retrieval\data", force_rebuild=False):
+    """构建图库特征
+    
+    Args:
+        photo_dir: 图片目录路径
+        output_dir: 输出目录路径
+        force_rebuild: 是否强制重新构建，False则检查已有特征文件
+    """
     print("开始构建图库特征...")
     
     # 创建输出目录
     os.makedirs(output_dir, exist_ok=True)
-    
-    # 初始化检索系统
-    weights_path = r"assignments\vit-dinov2-base.npz"
-    retrieval_system = ImageRetrievalSystem(weights_path)
     
     # 获取所有图片文件
     image_extensions = {'.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'}
@@ -37,6 +39,19 @@ def build_gallery_features(photo_dir=r"assignments\photo", output_dir=r"retrieva
         # 创建模拟数据用于演示
         create_mock_gallery_data(output_dir)
         return
+    
+    # 检查是否已有特征文件 - 只要文件存在就跳过处理
+    features_path = os.path.join(output_dir, "gallery_features.npy")
+    
+    if not force_rebuild and os.path.exists(features_path):
+        print(f"检测到已有特征文件: {features_path}")
+        print("跳过重新构建，使用已有特征文件")
+        print("如需强制重新构建，请使用参数 --force-rebuild")
+        return
+    
+    # 初始化检索系统（移动到这里，避免不必要的初始化）
+    weights_path = r"assignments\vit-dinov2-base.npz"
+    retrieval_system = ImageRetrievalSystem(weights_path)
     
     # 提取特征
     features = []
@@ -95,4 +110,22 @@ def create_mock_gallery_data(output_dir):
     print(f"创建了 {num_images} 个模拟图库数据")
 
 if __name__ == "__main__":
-    build_gallery_features()
+    import argparse
+    
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser(description='构建图库特征')
+    parser.add_argument('--force-rebuild', action='store_true', 
+                       help='强制重新构建特征，即使已有特征文件存在')
+    parser.add_argument('--photo-dir', type=str, default=r"assignments\photo",
+                       help='图片目录路径 (默认: assignments\photo)')
+    parser.add_argument('--output-dir', type=str, default=r"retrieval\data",
+                       help='输出目录路径 (默认: retrieval\data)')
+    
+    args = parser.parse_args()
+    
+    # 调用构建函数
+    build_gallery_features(
+        photo_dir=args.photo_dir,
+        output_dir=args.output_dir,
+        force_rebuild=args.force_rebuild
+    )
