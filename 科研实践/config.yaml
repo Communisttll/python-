@@ -1,0 +1,33 @@
+# AI-Native 个人记忆系统配置文件
+
+system:
+  memory_root: "D:/Users/作业/科研实践/memory"
+  chroma_path: "D:/Users/作业/科研实践/memory/chroma"
+  log_level: "INFO"
+
+llm:
+  # 可选: "ollama", "openai", "anthropic", "deepseek"
+  provider: "ollama"
+  model: "qwen2.5:14b"
+  api_base: "http://localhost:11434"
+
+  # 本地Ollama配置
+  ollama:
+    embedding_model: "nomic-embed-text"
+
+  # 云端API配置（按需启用）
+  cloud:
+    openai:
+      model: "gpt-4o"
+      api_key: "${OPENAI_API_KEY}"
+    anthropic:
+      model: "claude-sonnet-4-20250514"
+      api_key: "${ANTHROPIC_API_KEY}"
+
+vector:
+  embedding_model: "nomic-embed-text"
+  dimension: 768
+
+storage:
+  chunk_size: 500
+  chunk_overlap: 50

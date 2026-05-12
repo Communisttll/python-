@@ -1,0 +1,536 @@
+// =============================================================================
+// AI-Native 个人记忆系统 - 记忆血缘图 (Memory Lineage Graph)
+// 渲染命令: dot -Tpng -Gdpi=300 memory-lineage-graph-v3.dot -o lineage.png
+//           dot -Tsvg memory-lineage-graph-v3.dot -o lineage.svg
+// =============================================================================
+
+digraph MemoryLineageGraph {
+    graph [
+        label="AI-Native 个人记忆系统 - 记忆血缘追踪图"
+        labelloc=t
+        labeljust=c
+        fontsize=22
+        fontname="Microsoft YaHei"
+        bgcolor="#fafafa"
+        pad=0.8
+        nodesep=0.8
+        ranksep=1.4
+        splines=ortho
+        compound=true
+        newrank=true
+        margin=0.6
+        style=filled
+    ]
+
+    node [
+        fontname="Microsoft YaHei"
+        fontsize=10
+        fontcolor="#333333"
+        style=filled
+        penwidth=1.5
+        margin="0.15,0.1"
+        shape=box
+    ]
+
+    edge [
+        fontname="Microsoft YaHei"
+        fontsize=9
+        penwidth=1.5
+        arrowsize=0.8
+        color="#666666"
+        fontcolor="#333333"
+    ]
+
+    // ==========================================================================
+    // 第一层: 输入源层
+    // ==========================================================================
+    subgraph cluster_input_layer {
+        label="输入源层 Input Source Layer"
+        labeljust=l
+        fontsize=13
+        fontcolor="#333333"
+        bgcolor="#f0f0f0"
+        style=filled
+        penwidth=1.5
+        color="#aaaaaa"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#ffffff"
+            color="#888888"
+            penwidth=1.5
+        ]
+
+        src_pdf [
+            label="PDF论文 | transformer.pdf | Attention is All You Need | Vaswani et al. | 12页"
+            width=4.8
+            height=0.7
+        ]
+
+        src_wiki [
+            label="Wikipedia | attention.html | Attention Mechanism | 词条"
+            width=4.8
+            height=0.7
+        ]
+
+        src_video [
+            label="B站视频 | BV1xx411c7mD | Transformer科普 | 15:32"
+            width=4.8
+            height=0.7
+        ]
+    }
+
+    // ==========================================================================
+    // 第二层: 内容分块层
+    // ==========================================================================
+    subgraph cluster_chunk_layer {
+        label="内容分块层 Content Chunking Layer"
+        labeljust=l
+        fontsize=13
+        fontcolor="#333333"
+        bgcolor="#f5f5f5"
+        style=filled
+        penwidth=1.5
+        color="#aaaaaa"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#ffffff"
+            color="#888888"
+            penwidth=1.5
+        ]
+
+        chunk_001 [
+            label="Chunk #001 | transformer.pdf | p.1-2 | chars:0-2048"
+            width=4.5
+            height=0.55
+        ]
+
+        chunk_002 [
+            label="Chunk #002 | transformer.pdf | p.3-4 | chars:2048-4096"
+            width=4.5
+            height=0.55
+        ]
+
+        chunk_003 [
+            label="Chunk #003 | attention.html | para.5 | chars:512-1536"
+            width=4.5
+            height=0.55
+        ]
+
+        chunk_004 [
+            label="Chunk #004 | video | 00:01:23-00:02:45"
+            width=4.5
+            height=0.55
+        ]
+
+        chunk_005 [
+            label="Chunk #005 | video | 00:05:10-00:06:30"
+            width=4.5
+            height=0.55
+        ]
+    }
+
+    // ==========================================================================
+    // 第三层: 向量化层
+    // ==========================================================================
+    subgraph cluster_embedding_layer {
+        label="向量化层 Vector Embedding Layer"
+        labeljust=l
+        fontsize=13
+        fontcolor="#333333"
+        bgcolor="#ebebeb"
+        style=filled
+        penwidth=1.5
+        color="#aaaaaa"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#ffffff"
+            color="#888888"
+            penwidth=1.5
+        ]
+
+        emb_001 [
+            label="Embedding #001 | text2vec-base | 768维 | emb_7f8a9b"
+            width=4.5
+            height=0.55
+        ]
+
+        emb_002 [
+            label="Embedding #002 | text2vec-base | 768维 | emb_8g9h0c"
+            width=4.5
+            height=0.55
+        ]
+
+        emb_003 [
+            label="Embedding #003 | text2vec-base | 768维 | emb_9h0i1d"
+            width=4.5
+            height=0.55
+        ]
+
+        emb_004 [
+            label="Embedding #004 | text2vec-base | 768维 | emb_0i1j2e"
+            width=4.5
+            height=0.55
+        ]
+
+        emb_005 [
+            label="Embedding #005 | text2vec-base | 768维 | emb_1j2k3f"
+            width=4.5
+            height=0.55
+        ]
+    }
+
+    // ==========================================================================
+    // 第四层: 记忆存储层
+    // ==========================================================================
+    subgraph cluster_memory_layer {
+        label="记忆存储层 Memory Storage Layer"
+        labeljust=l
+        fontsize=13
+        fontcolor="#333333"
+        bgcolor="#e5e5e5"
+        style=filled
+        penwidth=1.5
+        color="#aaaaaa"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#ffffff"
+            color="#888888"
+            penwidth=1.5
+        ]
+
+        mem_001 [
+            label="Memory #001 | mem_abc123 | Transformer自注意力机制 | [深度学习,NLP]"
+            width=4.8
+            height=0.65
+        ]
+
+        mem_002 [
+            label="Memory #002 | mem_def456 | 注意力机制原理 | [机器学习,注意力]"
+            width=4.8
+            height=0.65
+        ]
+
+        mem_003 [
+            label="Memory #003 | mem_ghi789 | Transformer视频讲解 | [科普,视频]"
+            width=4.8
+            height=0.65
+        ]
+
+        subgraph cluster_chromadb {
+            label="ChromaDB 向量库"
+            labeljust=c
+            fontsize=11
+            fontcolor="#333333"
+            bgcolor="#dcdcdc"
+            style=filled
+            penwidth=1
+            color="#999999"
+            margin=12
+
+            node [
+                shape=cylinder
+                fillcolor="#f8f8f8"
+                color="#888888"
+            ]
+
+            chromadb_collections [
+                label="Collections: memories\nVectors: 1,337 | Dims: 768"
+                width=2.8
+                height=0.8
+            ]
+        }
+    }
+
+    // ==========================================================================
+    // 第五层: 语义检索层
+    // ==========================================================================
+    subgraph cluster_retrieval_layer {
+        label="语义检索层 Semantic Retrieval Layer"
+        labeljust=l
+        fontsize=13
+        fontcolor="#333333"
+        bgcolor="#dcdcdc"
+        style=filled
+        penwidth=1.5
+        color="#aaaaaa"
+        margin=20
+
+        node [
+            fillcolor="#ffffff"
+            color="#888888"
+            penwidth=1.5
+        ]
+
+        user_query [
+            label="用户查询: \"transformer架构的核心优势和局限性\""
+            shape=oval
+            width=5.0
+            height=0.65
+        ]
+
+        ret_001 [
+            label="Retrieval #001 | top_k:5 | 耗时:45ms\nmem_001(score:0.92) | mem_002(score:0.87) | mem_003(score:0.78)"
+            width=5.8
+            height=0.85
+        ]
+    }
+
+    // ==========================================================================
+    // 第六层: 引用标注层 (红色边框 - 重要节点)
+    // ==========================================================================
+    subgraph cluster_citation_layer {
+        label="引用标注层 Citation Layer"
+        labeljust=l
+        fontsize=13
+        fontcolor="#333333"
+        bgcolor="#d8d8d8"
+        style=filled
+        penwidth=2
+        color="#cc0000"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#fff5f5"
+            color="#cc0000"
+            penwidth=2.5
+            fontcolor="#cc0000"
+        ]
+
+        cit_001 [
+            label="Citation #001\nchunk:chunk_001 | p.1-3 | 相关度:92%\n摘录: Transformer架构通过自注意力机制实现..."
+            width=5.5
+            height=0.9
+        ]
+
+        cit_002 [
+            label="Citation #002\nchunk:chunk_002 | p.3-4 | 相关度:87%\n摘录: 注意力机制通过Query-Key-Value..."
+            width=5.5
+            height=0.9
+        ]
+
+        cit_003 [
+            label="Citation #003\nchunk:chunk_003 | para.5 | 相关度:78%\n摘录: 自注意力机制允许序列中任意位置..."
+            width=5.5
+            height=0.9
+        ]
+    }
+
+    // ==========================================================================
+    // 第七层: AI生成层 (红色边框 - 重要节点)
+    // ==========================================================================
+    subgraph cluster_draft_layer {
+        label="AI生成层 AI Generation Layer"
+        labeljust=l
+        fontsize=13
+        fontcolor="#333333"
+        bgcolor="#d0d0d0"
+        style=filled
+        penwidth=1.5
+        color="#aaaaaa"
+        margin=20
+
+        node [
+            fillcolor="#ffffff"
+            color="#888888"
+            penwidth=1.5
+        ]
+
+        llm_model [
+            label="LLM: qwen2.5:14b | Temp:0.7 | MaxTokens:2048"
+            shape=oval
+            width=3.8
+            height=0.65
+        ]
+
+        draft_001 [
+            label="Draft #001 | Transformer研究背景\n生成耗时:3.2s | Tokens:1,536\n引用: cit_001, cit_002, cit_003 | 完整度:100%"
+            width=5.8
+            height=1.0
+            fillcolor="#fff5f5"
+            color="#cc0000"
+            penwidth=2.5
+            fontcolor="#cc0000"
+        ]
+
+        lineage_path [
+            label="Lineage Path | lp_001\n来源: [src_pdf, src_wiki]\nChunks: [001, 002, 003] | 溯源率:100%"
+            shape=note
+            fillcolor="#fffafa"
+            color="#cc0000"
+            penwidth=2
+            width=5.5
+            height=0.85
+        ]
+    }
+
+    // ==========================================================================
+    // 边: 输入阶段
+    // ==========================================================================
+    edge [color="#666666" penwidth=1.5]
+
+    src_pdf -> chunk_001 [label=" parsed_from "]
+    src_pdf -> chunk_002 [label=" parsed_from "]
+    src_wiki -> chunk_003 [label=" parsed_from "]
+    src_video -> chunk_004 [label=" parsed_from "]
+    src_video -> chunk_005 [label=" parsed_from "]
+
+    // ==========================================================================
+    // 边: 向量化阶段
+    // ==========================================================================
+    chunk_001 -> emb_001 [label=" embedded_from "]
+    chunk_002 -> emb_002 [label=" embedded_from "]
+    chunk_003 -> emb_003 [label=" embedded_from "]
+    chunk_004 -> emb_004 [label=" embedded_from "]
+    chunk_005 -> emb_005 [label=" embedded_from "]
+
+    // ==========================================================================
+    // 边: 存储阶段
+    // ==========================================================================
+    emb_001 -> mem_001 [label=" stored_in "]
+    emb_002 -> mem_001 [label=" stored_in "]
+    emb_003 -> mem_002 [label=" stored_in "]
+    emb_004 -> mem_003 [label=" stored_in "]
+    emb_005 -> mem_003 [label=" stored_in "]
+
+    edge [style=dashed color="#999999" penwidth=1]
+    mem_001 -> chromadb_collections [label=" indexed_in "]
+    mem_002 -> chromadb_collections [label=" indexed_in "]
+    mem_003 -> chromadb_collections [label=" indexed_in "]
+
+    // ==========================================================================
+    // 边: 检索阶段
+    // ==========================================================================
+    edge [penwidth=2.0 color="#555555"]
+    user_query -> ret_001 [label=" semantic_search (top_k=5) "]
+
+    edge [color="#666666"]
+    mem_001 -> ret_001 [label=" retrieved "]
+    mem_002 -> ret_001 [label=" retrieved "]
+    mem_003 -> ret_001 [label=" retrieved "]
+
+    // ==========================================================================
+    // 边: 引用关系 - 红色粗体 (cites)
+    // ==========================================================================
+    edge [
+        color="#cc0000"
+        penwidth=3.0
+        fontcolor="#cc0000"
+        fontsize=10
+        fontname="Microsoft YaHei Bold"
+    ]
+
+    ret_001 -> cit_001 [label=" cites "]
+    ret_001 -> cit_002 [label=" cites "]
+    ret_001 -> cit_003 [label=" cites "]
+
+    // ==========================================================================
+    // 边: 生成阶段 - 红色粗体 (cited_in)
+    // ==========================================================================
+    edge [
+        color="#cc0000"
+        penwidth=3.0
+        fontcolor="#cc0000"
+        fontsize=10
+        fontname="Microsoft YaHei Bold"
+    ]
+
+    cit_001 -> draft_001 [label=" cited_in "]
+    cit_002 -> draft_001 [label=" cited_in "]
+    cit_003 -> draft_001 [label=" cited_in "]
+
+    llm_model -> draft_001 [label=" generated_from " color="#333333" fontcolor="#333333" penwidth=2.0]
+
+    // ==========================================================================
+    // 边: 血缘追溯 - 红色虚线粗体 (cited_from)
+    // ==========================================================================
+    edge [
+        style=dashed
+        color="#cc0000"
+        penwidth=2.5
+        fontcolor="#cc0000"
+        fontsize=10
+        fontname="Microsoft YaHei Bold"
+        constraint=false
+    ]
+
+    cit_001 -> chunk_001 [label=" cited_from "]
+    cit_002 -> chunk_002 [label=" cited_from "]
+    cit_003 -> chunk_003 [label=" cited_from "]
+
+    // ==========================================================================
+    // 边: 血缘路径记录
+    // ==========================================================================
+    edge [color="#666666" penwidth=2.0]
+    draft_001 -> lineage_path [label=" tracked_in "]
+
+    edge [style=dashed color="#999999" penwidth=1.5 constraint=false]
+    lineage_path -> src_pdf [label=" lineage_trace "]
+    lineage_path -> src_wiki [label=" lineage_trace "]
+
+    // ==========================================================================
+    // 图例
+    // ==========================================================================
+    subgraph cluster_legend {
+        label="图例 Legend"
+        labeljust=l
+        fontsize=11
+        fontcolor="#333333"
+        bgcolor="#e8e8e8"
+        style=filled
+        penwidth=1
+        color="#aaaaaa"
+        margin=15
+
+        node [
+            shape=box
+            fontsize=9
+            fontcolor="#333333"
+            style=filled
+            fillcolor="#ffffff"
+            color="#888888"
+            penwidth=1
+            height=0.4
+        ]
+
+        leg_data_flow [
+            label="数据流向"
+            color="#666666"
+            penwidth=2
+        ]
+
+        leg_cited [
+            label="引用关系 (cited_in / cited_from / cites)"
+            color="#cc0000"
+            penwidth=3
+            fontcolor="#cc0000"
+        ]
+
+        leg_lineage [
+            label="血缘追溯 (虚线)"
+            color="#999999"
+            penwidth=1.5
+            style=dashed
+        ]
+    }
+
+    // ==========================================================================
+    // 节点层级约束
+    // ==========================================================================
+    { rank=same; src_pdf; src_wiki; src_video; }
+    { rank=same; chunk_001; chunk_002; chunk_003; chunk_004; chunk_005; }
+    { rank=same; emb_001; emb_002; emb_003; emb_004; emb_005; }
+    { rank=same; mem_001; mem_002; mem_003; chromadb_collections; }
+    { rank=same; user_query; ret_001; }
+    { rank=same; cit_001; cit_002; cit_003; }
+    { rank=same; llm_model; draft_001; lineage_path; }
+    { rank=same; leg_data_flow; leg_cited; leg_lineage; }
+}

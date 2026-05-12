@@ -1,0 +1,722 @@
+// =============================================================================
+// AI-Native 个人记忆系统 - 记忆血缘图 (Memory Lineage Graph)
+// 生成工具: Graphviz DOT Language
+// 渲染命令: dot -Tpng -Gdpi=300 2026-05-11-memory-lineage-graph.dot -o lineage.png
+//           neato -Tpng -Gdpi=300 2026-05-11-memory-lineage-graph.dot -o lineage.png
+//           sfdp -Tpng -Gdpi=300 2026-05-11-memory-lineage-graph.dot -o lineage.png
+// =============================================================================
+
+digraph MemoryLineageGraph {
+    // ==========================================================================
+    // 全局图属性
+    // ==========================================================================
+    graph [
+        label="AI-Native 个人记忆系统 - 记忆血缘追踪图\nMemory Lineage Tracking Graph"
+        labelloc=t
+        labeljust=c
+        fontsize=24
+        fontname="Microsoft YaHei"
+        bgcolor="#1a1a2e"
+        pad=0.5
+        nodesep=0.8
+        ranksep=1.0
+        splines=ortho
+        compound=true
+        newrank=true
+        ratio=fill
+        margin=0.5
+        style=filled
+        concentrate=true
+    ]
+
+    // ==========================================================================
+    // 全局节点样式
+    // ==========================================================================
+    node [
+        fontname="Microsoft YaHei"
+        fontsize=11
+        fontcolor="#e8e8e8"
+        style=filled
+        penwidth=2
+        margin="0.15,0.1"
+        shape=box
+    ]
+
+    edge [
+        fontname="Microsoft YaHei"
+        fontsize=9
+        penwidth=1.5
+        arrowsize=0.8
+        arrowhead=normal
+        color="#6c8ebf"
+        fontcolor="#a8b4c8"
+    ]
+
+    // ==========================================================================
+    // 颜色调色板
+    // ==========================================================================
+    // 层级一: 输入源 - 沉稳蓝
+    // 层级二: 分块处理 - 清新青
+    // 层级三: 向量嵌入 - 活力绿
+    // 层级四: 记忆存储 - 金黄橙
+    // 层级五: 检索查询 - 热情红
+    // 层级六: 引用标注 - 柔美紫
+    // 层级七: 最终输出 - 纯白
+
+    // ==========================================================================
+    // 子图: 输入源层 (Layer 1 - Sources)
+    // ==========================================================================
+    subgraph cluster_input_layer {
+        label="【第一层】输入源层 Input Source Layer"
+        labeljust=l
+        fontsize=14
+        fontcolor="#4fc3f7"
+        bgcolor="#0d1b2a"
+        style=filled
+        penwidth=2
+        color="#4fc3f7"
+        margin=20
+
+        // PDF论文源
+        node [
+            shape=record
+            fillcolor="#1565c0:#0d47a1"
+            gradientangle=90
+            color="#4fc3f7"
+        ]
+
+        src_pdf [
+            label="{ 📄 PDF论文 | { file: transformer.pdf | title: Attention is All You Need | authors: Vaswani et al. | pages: 12 | size: 2.1MB | hash: sha256:e3b0c4... } }"
+            tooltip="PDF论文源节点 - 原始学术论文输入"
+        ]
+
+        src_wiki [
+            label="{ 🌐 Wikipedia | { url: wiki/attention.html | title: Attention Mechanism | section: AI | cached: true | lang: zh-CN } }"
+            tooltip="Wikipedia网页源节点"
+        ]
+
+        src_video [
+            label="{ 🎬 B站视频 | { id: BV1xx411c7mD | title: Transformer科普视频 | duration: 15:32 | subtitle: auto-generated } }"
+            tooltip="B站视频源节点"
+        ]
+    }
+
+    // ==========================================================================
+    // 子图: 分块处理层 (Layer 2 - Chunking)
+    // ==========================================================================
+    subgraph cluster_chunk_layer {
+        label="【第二层】内容分块层 Content Chunking Layer"
+        labeljust=l
+        fontsize=14
+        fontcolor="#26a69a"
+        bgcolor="#0d1b2a"
+        style=filled
+        penwidth=2
+        color="#26a69a"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#00695c:#004d40"
+            gradientangle=90
+            color="#26a69a"
+        ]
+
+        chunk_001 [
+            label="{ 📦 Chunk #001 | page: 1-2 | chars: 0-2048 | hash: md5:a1b2c3 | preview: \"Transformer架构采用自注意力...\" }"
+            tooltip="分块001 - 来自transformer.pdf第1-2页"
+        ]
+
+        chunk_002 [
+            label="{ 📦 Chunk #002 | page: 3-4 | chars: 2048-4096 | hash: md5:d4e5f6 | preview: \"注意力机制通过Query-Key...\" }"
+            tooltip="分块002 - 来自transformer.pdf第3-4页"
+        ]
+
+        chunk_003 [
+            label="{ 📦 Chunk #003 | para: 5 | chars: 512-1536 | hash: md5:g7h8i9 | preview: \"自注意力机制允许序列...\" }"
+            tooltip="分块003 - 来自wiki-attention.html第5段"
+        ]
+
+        chunk_004 [
+            label="{ 📦 Chunk #004 | timestamp: 00:01:23-00:02:45 | chars: 0-1024 | hash: md5:j0k1l2 | preview: \"今天我们来讲Transformer...\" }"
+            tooltip="分块004 - 来自B站视频时间戳01:23-02:45"
+        ]
+
+        chunk_005 [
+            label="{ 📦 Chunk #005 | timestamp: 00:05:10-00:06:30 | chars: 1024-2048 | hash: md5:m3n4o5 | preview: \"注意力机制是Transformer...\" }"
+            tooltip="分块005 - 来自B站视频时间戳05:10-06:30"
+        ]
+    }
+
+    // ==========================================================================
+    // 子图: 向量嵌入层 (Layer 3 - Embedding)
+    // ==========================================================================
+    subgraph cluster_embedding_layer {
+        label="【第三层】向量化层 Vector Embedding Layer"
+        labeljust=l
+        fontsize=14
+        fontcolor="#66bb6a"
+        bgcolor="#0d1b2a"
+        style=filled
+        penwidth=2
+        color="#66bb6a"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#2e7d32:#1b5e20"
+            gradientangle=90
+            color="#66bb6a"
+        ]
+
+        emb_001 [
+            label="{ 🧠 Embedding #001 | model: text2vec-base | dims: 768 | chroma_id: emb_7f8a9b | vector_norm: 1.0 }"
+            tooltip="向量嵌入001"
+        ]
+
+        emb_002 [
+            label="{ 🧠 Embedding #002 | model: text2vec-base | dims: 768 | chroma_id: emb_8g9h0c | vector_norm: 1.0 }"
+            tooltip="向量嵌入002"
+        ]
+
+        emb_003 [
+            label="{ 🧠 Embedding #003 | model: text2vec-base | dims: 768 | chroma_id: emb_9h0i1d | vector_norm: 1.0 }"
+            tooltip="向量嵌入003"
+        ]
+
+        emb_004 [
+            label="{ 🧠 Embedding #004 | model: text2vec-base | dims: 768 | chroma_id: emb_0i1j2e | vector_norm: 1.0 }"
+            tooltip="向量嵌入004"
+        ]
+
+        emb_005 [
+            label="{ 🧠 Embedding #005 | model: text2vec-base | dims: 768 | chroma_id: emb_1j2k3f | vector_norm: 1.0 }"
+            tooltip="向量嵌入005"
+        ]
+    }
+
+    // ==========================================================================
+    // 子图: 记忆存储层 (Layer 4 - Memory Storage)
+    // ==========================================================================
+    subgraph cluster_memory_layer {
+        label="【第四层】记忆存储层 Memory Storage Layer"
+        labeljust=l
+        fontsize=14
+        fontcolor="#ffa726"
+        bgcolor="#0d1b2a"
+        style=filled
+        penwidth=2
+        color="#ffa726"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#ef6c00:#e65100"
+            gradientangle=90
+            color="#ffa726"
+        ]
+
+        mem_001 [
+            label="{ 💾 Memory #001 | id: mem_abc123 | title: Transformer自注意力机制 | tags: [深度学习,NLP] | chunks: 2 | indexed_at: 2026-05-11T10:35 }"
+            tooltip="记忆单元001"
+        ]
+
+        mem_002 [
+            label="{ 💾 Memory #002 | id: mem_def456 | title: 注意力机制原理 | tags: [机器学习,注意力] | chunks: 1 | indexed_at: 2026-05-11T10:36 }"
+            tooltip="记忆单元002"
+        ]
+
+        mem_003 [
+            label="{ 💾 Memory #003 | id: mem_ghi789 | title: Transformer视频讲解 | tags: [科普,视频] | chunks: 2 | indexed_at: 2026-05-11T10:37 }"
+            tooltip="记忆单元003"
+        ]
+
+        // ChromaDB存储池
+        subgraph cluster_chromadb {
+            label="ChromaDB 向量索引库"
+            labeljust=c
+            fontsize=12
+            fontcolor="#81d4fa"
+            bgcolor="#0a1628"
+            style=filled
+            penwidth=1
+            color="#4fc3f7"
+            margin=15
+
+            node [
+                shape=cylinder
+                fillcolor="#0277bd:#01579b"
+                gradientangle=90
+                color="#4fc3f7"
+            ]
+
+            chromadb_collections [
+                label="📦 Collections\nmemories_collection\n─────────────────\nTotal vectors: 1,337\nDimensions: 768\nDistance: cosanne"
+                tooltip="ChromaDB向量数据库"
+            ]
+        }
+    }
+
+    // ==========================================================================
+    // 子图: 检索查询层 (Layer 5 - Retrieval)
+    // ==========================================================================
+    subgraph cluster_retrieval_layer {
+        label="【第五层】语义检索层 Semantic Retrieval Layer"
+        labeljust=l
+        fontsize=14
+        fontcolor="#ef5350"
+        bgcolor="#0d1b2a"
+        style=filled
+        penwidth=2
+        color="#ef5350"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#c62828:#b71c1c"
+            gradientangle=90
+            color="#ef5350"
+        ]
+
+        // 用户查询
+        node [
+            shape=oval
+            fillcolor="#7b1fa2:#4a148c"
+            gradientangle=90
+            color="#ce93d8"
+        ]
+
+        user_query [
+            label="🔍 用户查询\n\"transformer架构的\n核心优势和局限性\""
+            tooltip="用户输入的查询语句"
+        ]
+
+        // 检索结果
+        node [
+            shape=record
+            fillcolor="#c62828:#b71c1c"
+            gradientangle=90
+            color="#ef5350"
+        ]
+
+        ret_001 [
+            label="{ 🔎 Retrieval #001 | query_hash: q_xyz789 | top_k: 5 | time: 45ms | { { rank:1, mem:mem_001, score:0.92 }, { rank:2, mem:mem_002, score:0.87 }, { rank:3, mem:mem_003, score:0.78 } } }"
+            tooltip="检索结果001"
+        ]
+    }
+
+    // ==========================================================================
+    // 子图: 引用标注层 (Layer 6 - Citation)
+    // ==========================================================================
+    subgraph cluster_citation_layer {
+        label="【第六层】引用标注层 Citation Layer"
+        labeljust=l
+        fontsize=14
+        fontcolor="#ab47bc"
+        bgcolor="#0d1b2a"
+        style=filled
+        penwidth=2
+        color="#ab47bc"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#7b1fa2:#4a148c"
+            gradientangle=90
+            color="#ab47bc"
+        ]
+
+        cit_001 [
+            label="{ 📎 Citation #001 | chunk: chunk_001 | position: 1st | page_ref: p.1-3 | relevance: 92% | excerpt: \"Transformer架构通过自注意力机制实现序列建模突破...\" }"
+            tooltip="引用标注001"
+        ]
+
+        cit_002 [
+            label="{ 📎 Citation #002 | chunk: chunk_002 | position: 2nd | page_ref: p.3-4 | relevance: 87% | excerpt: \"注意力机制通过Query-Key-Value权重计算...\" }"
+            tooltip="引用标注002"
+        ]
+
+        cit_003 [
+            label="{ 📎 Citation #003 | chunk: chunk_003 | position: 3rd | page_ref: para.5 | relevance: 78% | excerpt: \"自注意力机制允许序列中任意位置直接关联...\" }"
+            tooltip="引用标注003"
+        ]
+    }
+
+    // ==========================================================================
+    // 子图: 初稿输出层 (Layer 7 - Draft Output)
+    // ==========================================================================
+    subgraph cluster_draft_layer {
+        label="【第七层】AI生成层 AI Generation Layer"
+        labeljust=l
+        fontsize=14
+        fontcolor="#ffffff"
+        bgcolor="#0d1b2a"
+        style=filled
+        penwidth=2
+        color="#ffffff"
+        margin=20
+
+        node [
+            shape=record
+            fillcolor="#424242:#212121"
+            gradientangle=90
+            color="#ffffff"
+        ]
+
+        // LLM模型
+        node [
+            shape=oval
+            fillcolor="#311b92:#1a237e"
+            gradientangle=90
+            color="#b388ff"
+        ]
+
+        llm_model [
+            label="🤖 LLM Model\nqwen2.5:14b\nTemperature: 0.7\nMax Tokens: 2048"
+            tooltip="大语言模型"
+        ]
+
+        // 最终初稿
+        node [
+            shape=record
+            fillcolor="#37474f:#263238"
+            gradientangle=90
+            color="#80cbc4"
+        ]
+
+        draft_001 [
+            label="{ 📝 Draft #001 | title: Transformer研究背景 | id: draft_final_001 | model: qwen2.5:14b | gen_time: 3.2s | tokens: 1,536 | citations: [cit_001,cit_002,cit_003] | completeness: 100% } }"
+            tooltip="最终生成的初稿"
+        ]
+
+        // 血缘路径记录
+        node [
+            shape=note
+            fillcolor="#1b5e20:#0d3b13"
+            gradientangle=90
+            color="#69f0ae"
+        ]
+
+        lineage_path [
+            label="{ 🔗 Lineage Path | path_id: lp_001 | sources: [src_pdf,src_wiki] | chunks: [001,002,003] | memories: [001,002] | completeness: 100% | coverage: 100% }"
+            tooltip="血缘路径追踪记录"
+        ]
+    }
+
+    // ==========================================================================
+    // 边关系定义 - 输入阶段 (Source → Chunk)
+    // ==========================================================================
+    edge [
+        color="#4fc3f7:#26a69a"
+        gradientangle=90
+        penwidth=2.0
+        style=filled
+    ]
+
+    src_pdf -> chunk_001 [
+        label="parsed_from\n(p.1-2, chars:0-2048)"
+        tooltip="PDF解析为分块"
+    ]
+    src_pdf -> chunk_002 [
+        label="parsed_from\n(p.3-4, chars:2048-4096)"
+        tooltip="PDF解析为分块"
+    ]
+    src_wiki -> chunk_003 [
+        label="parsed_from\n(para.5, chars:512-1536)"
+        tooltip="网页解析为分块"
+    ]
+    src_video -> chunk_004 [
+        label="parsed_from\n(ts:01:23-02:45)"
+        tooltip="视频解析为分块"
+    ]
+    src_video -> chunk_005 [
+        label="parsed_from\n(ts:05:10-06:30)"
+        tooltip="视频解析为分块"
+    ]
+
+    // ==========================================================================
+    // 边关系定义 - 向量化阶段 (Chunk → Embedding)
+    // ==========================================================================
+    edge [
+        color="#26a69a:#66bb6a"
+        gradientangle=90
+        penwidth=2.0
+        style=filled
+    ]
+
+    chunk_001 -> emb_001 [
+        label="embedded_from\n(model:text2vec-base)"
+        tooltip="分块向量化"
+    ]
+    chunk_002 -> emb_002 [
+        label="embedded_from\n(model:text2vec-base)"
+        tooltip="分块向量化"
+    ]
+    chunk_003 -> emb_003 [
+        label="embedded_from\n(model:text2vec-base)"
+        tooltip="分块向量化"
+    ]
+    chunk_004 -> emb_004 [
+        label="embedded_from\n(model:text2vec-base)"
+        tooltip="分块向量化"
+    ]
+    chunk_005 -> emb_005 [
+        label="embedded_from\n(model:text2vec-base)"
+        tooltip="分块向量化"
+    ]
+
+    // ==========================================================================
+    // 边关系定义 - 存储阶段 (Embedding → Memory & ChromaDB)
+    // ==========================================================================
+    edge [
+        color="#66bb6a:#ffa726"
+        gradientangle=90
+        penwidth=2.0
+        style=filled
+    ]
+
+    emb_001 -> mem_001 [
+        label="stored_in\n→ ChromaDB"
+        tooltip="向量存储到记忆单元"
+    ]
+    emb_002 -> mem_001 [
+        label="stored_in\n→ ChromaDB"
+        tooltip="向量存储到记忆单元"
+    ]
+    emb_003 -> mem_002 [
+        label="stored_in\n→ ChromaDB"
+        tooltip="向量存储到记忆单元"
+    ]
+    emb_004 -> mem_003 [
+        label="stored_in\n→ ChromaDB"
+        tooltip="向量存储到记忆单元"
+    ]
+    emb_005 -> mem_003 [
+        label="stored_in\n→ ChromaDB"
+        tooltip="向量存储到记忆单元"
+    ]
+
+    // Memory → ChromaDB
+    edge [
+        color="#ffa726:#4fc3f7"
+        penwidth=1.5
+        style=dashed
+    ]
+
+    mem_001 -> chromadb_collections [
+        label="indexed_in"
+        tooltip="记忆单元索引到ChromaDB"
+    ]
+    mem_002 -> chromadb_collections [
+        label="indexed_in"
+        tooltip="记忆单元索引到ChromaDB"
+    ]
+    mem_003 -> chromadb_collections [
+        label="indexed_in"
+        tooltip="记忆单元索引到ChromaDB"
+    ]
+
+    // ==========================================================================
+    // 边关系定义 - 检索阶段 (Memory → Retrieval)
+    // ==========================================================================
+    edge [
+        color="#ffa726:#ef5350"
+        gradientangle=90
+        penwidth=2.5
+        style=filled
+    ]
+
+    user_query -> ret_001 [
+        label="semantic_search\n(top_k=5)"
+        tooltip="用户查询触发语义检索"
+        penwidth=3.0
+        color="#7b1fa2:#ef5350"
+    ]
+
+    mem_001 -> ret_001 [
+        label="retrieved_from\n(score: 0.92)"
+        tooltip="记忆单元被检索"
+    ]
+    mem_002 -> ret_001 [
+        label="retrieved_from\n(score: 0.87)"
+        tooltip="记忆单元被检索"
+    ]
+    mem_003 -> ret_001 [
+        label="retrieved_from\n(score: 0.78)"
+        tooltip="记忆单元被检索"
+    ]
+
+    // ==========================================================================
+    // 边关系定义 - 引用阶段 (Retrieval → Citation)
+    // ==========================================================================
+    edge [
+        color="#ef5350:#ab47bc"
+        gradientangle=90
+        penwidth=2.0
+        style=filled
+    ]
+
+    ret_001 -> cit_001 [
+        label="cites\n(position: 1st)"
+        tooltip="检索结果生成引用"
+    ]
+    ret_001 -> cit_002 [
+        label="cites\n(position: 2nd)"
+        tooltip="检索结果生成引用"
+    ]
+    ret_001 -> cit_003 [
+        label="cites\n(position: 3rd)"
+        tooltip="检索结果生成引用"
+    ]
+
+    // Citation → Chunk 追溯边
+    edge [
+        color="#ab47bc:#4fc3f7"
+        penwidth=1.5
+        style=dashed
+        constraint=false
+    ]
+
+    cit_001 -> chunk_001 [
+        label="cited_from\n追溯来源"
+        tooltip="引用追溯到原始分块"
+    ]
+    cit_002 -> chunk_002 [
+        label="cited_from\n追溯来源"
+        tooltip="引用追溯到原始分块"
+    ]
+    cit_003 -> chunk_003 [
+        label="cited_from\n追溯来源"
+        tooltip="引用追溯到原始分块"
+    ]
+
+    // ==========================================================================
+    // 边关系定义 - 生成阶段 (Citation → Draft, LLM → Draft)
+    // ==========================================================================
+    edge [
+        color="#ab47bc:#80cbc4"
+        gradientangle=90
+        penwidth=2.5
+        style=filled
+    ]
+
+    cit_001 -> draft_001 [
+        label="cited_in\n(p.1-3)"
+        tooltip="引用被用于生成初稿"
+    ]
+    cit_002 -> draft_001 [
+        label="cited_in\n(p.3-4)"
+        tooltip="引用被用于生成初稿"
+    ]
+    cit_003 -> draft_001 [
+        label="cited_in\n(para.5)"
+        tooltip="引用被用于生成初稿"
+    ]
+
+    llm_model -> draft_001 [
+        label="generated_from\n(gen_time: 3.2s)"
+        tooltip="LLM模型生成初稿"
+        penwidth=3.0
+        color="#311b92:#80cbc4"
+    ]
+
+    // ==========================================================================
+    // 边关系定义 - 血缘路径记录 (Draft → Lineage Path)
+    // ==========================================================================
+    edge [
+        color="#80cbc4:#69f0ae"
+        penwidth=2.0
+        style=filled
+    ]
+
+    draft_001 -> lineage_path [
+        label="tracked_in\n(completeness: 100%)"
+        tooltip="初稿被记录到血缘路径"
+    ]
+
+    // Lineage Path 追溯边 (虚线)
+    edge [
+        color="#69f0ae:#4fc3f7"
+        penwidth=1.5
+        style=dashed
+        constraint=false
+    ]
+
+    lineage_path -> src_pdf [
+        label="lineage_trace\n完整血缘追溯"
+        tooltip="血缘路径追溯到原始输入源"
+    ]
+    lineage_path -> src_wiki [
+        label="lineage_trace\n完整血缘追溯"
+        tooltip="血缘路径追溯到原始输入源"
+    ]
+
+    // ==========================================================================
+    // 图例 (Legend)
+    // ==========================================================================
+    subgraph cluster_legend {
+        label="📊 图例 Legend"
+        labeljust=l
+        fontsize=12
+        fontcolor="#e8e8e8"
+        bgcolor="#0a1628"
+        style=filled
+        penwidth=1
+        color="#546e7a"
+        margin=15
+        style=filled
+
+        node [
+            shape=box
+            fontsize=10
+            fontcolor="#e8e8e8"
+            style=filled
+            fillcolor="#37474f"
+            color="#546e7a"
+            penwidth=1
+        ]
+
+        leg_data_flow [
+            label="───── 数据流向 (Data Flow)"
+            color="#4fc3f7"
+            penwidth=2.5
+        ]
+
+        leg_lineage [
+            label="- - - 血缘追溯 (Lineage Trace)"
+            color="#69f0ae"
+            penwidth=2.0
+            style=dashed
+        ]
+
+        leg_retrieval [
+            label="••••• 语义检索 (Semantic Retrieval)"
+            color="#ef5350"
+            penwidth=2.0
+            style=dotted
+        ]
+
+        leg_generation [
+            label="═════ AI生成 (AI Generation)"
+            color="#b388ff"
+            penwidth=3.0
+        ]
+    }
+
+    // ==========================================================================
+    // 节点层级排序约束 (Rank Constraints)
+    // ==========================================================================
+    // 确保各层按顺序从上到下排列
+    { rank=same; src_pdf; src_wiki; src_video; }
+    { rank=same; chunk_001; chunk_002; chunk_003; chunk_004; chunk_005; }
+    { rank=same; emb_001; emb_002; emb_003; emb_004; emb_005; }
+    { rank=same; mem_001; mem_002; mem_003; chromadb_collections; }
+    { rank=same; user_query; ret_001; }
+    { rank=same; cit_001; cit_002; cit_003; }
+    { rank=same; llm_model; draft_001; lineage_path; }
+    { rank=same; leg_data_flow; leg_lineage; leg_retrieval; leg_generation; }
+}
+
+// =============================================================================
+// 文件结束
+// =============================================================================

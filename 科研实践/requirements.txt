@@ -1,0 +1,21 @@
+# AI-Native 个人记忆系统依赖
+
+# 核心依赖
+chromadb>=0.4.22
+langchain>=0.1.0
+langchain-community>=0.0.20
+
+# 内容解析
+pymupdf>=1.23.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+
+# LLM支持
+litellm>=1.0.0
+
+# 视频字幕
+yt-dlp>=2023.12.30
+
+# 工具
+pyyaml>=6.0
+python-dotenv>=1.0.0
